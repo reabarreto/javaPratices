@@ -59,35 +59,34 @@ public class contaBancaria {
     }
 
     public void abrirConta(int n, String t) {
-        setNumConta(n);
-        setTipo(t);
-        setStatus(true);
-        if (t == "CC") {
+        this.setTipo(t);
+        this.setStatus(true);
+        if ("CC".equals(t)) {
             setSaldo(50);
-        } else if (t == "CP") {
+        } else if ("CP".equals(t)) {
             setSaldo(150);
         }
     }
 
     public void fecharConta() {
-        if (getSaldo() == 0) {
-            setStatus(false);
+        if (this.getSaldo() == 0) {
+            this.setStatus(false);
         } else {
             System.out.println("Esta operação não pode ser realizada pois você possui saldo ou débito");
         }
     }
 
     public void depositar(float s) {
-        if (getStatus()) {
-            setSaldo(getSaldo() + s);
+        if (this.getStatus()) {
+            this.setSaldo(this.getSaldo() + s);
         } else {
             System.out.println("Esta conta não existe");
         }
     }
 
     public void sacar(float s) {
-        if (getStatus()) {
-            if (getSaldo() > s) {
+        if (this.getStatus()) {
+            if (this.getSaldo() >= s) {
                 setSaldo(getSaldo() - s);
             } else {
                 System.out.println("Saldo insuficiente");
@@ -99,17 +98,17 @@ public class contaBancaria {
 
     public void pagarMensal() {
         int v = 0;
-        if (getTipo() == "CC") {
+        if (this.getTipo() == "CC") {
             v = 12;
-        } else if (getTipo() == "CP") {
+        } else if (this.getTipo() == "CP") {
             v = 20;
         }
 
-        if (getStatus()) {
-            if (getSaldo() > v) {
-                setSaldo(getSaldo() - v);
-            } else if (getTipo() == "CP") {
-                setSaldo(getSaldo() - v);
+        if (this.getStatus()) {
+            if (this.getSaldo() > v) {
+                this.setSaldo(this.getSaldo() - v);
+            } else if (this.getTipo() == "CP") {
+                setSaldo(this.getSaldo() - v);
             } else {
                 System.out.println("Saldo insuficiente");
             }
